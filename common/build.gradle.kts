@@ -43,6 +43,7 @@ kotlin {
         }
         it.binaries {
             framework {
+                baseName = "common"
                 isStatic = true
                 binaryOption("bundleVersion", versionCode.toString())
                 binaryOption(
@@ -106,27 +107,6 @@ kotlin {
 
     compilerOptions {
         freeCompilerArgs.addAll("-Xexpect-actual-classes", "-Xdont-warn-on-error-suppression")
-    }
-
-    cocoapods {
-        version = versionCode.toString()
-        summary = "Bifrost"
-        homepage = "https://zwander.dev"
-        ios.deploymentTarget = "15.0"
-        osx.deploymentTarget = "10.13"
-        podfile = project.file("../iosApp/Podfile")
-        framework {
-            baseName = "common"
-            isStatic = true
-            export(libs.nsexceptionKt.core)
-
-            binaryOption("bundleVersion", versionCode.toString())
-            binaryOption(
-                "bundleShortVersionString",
-                versionName,
-            )
-            binaryOption("bundleId", packageName)
-        }
     }
 
     sourceSets {
